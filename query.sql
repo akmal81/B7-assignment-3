@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS Bookings;
 DROP TABLE IF EXISTS Matches;
 DROP TABLE IF EXISTS Users;
@@ -21,7 +20,7 @@ CREATE TABLE Matches (
     CONSTRAINT CHK_MATCHES_BASE_TICKET_PRICE CHECK(base_ticket_price > 0),
     CONSTRAINT CHK_MATCHES_MATCH_STATUS CHECK(match_status IN ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
   );
-  
+
 CREATE TABLE Bookings (
     booking_id INT PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
@@ -55,3 +54,78 @@ INSERT INTO Bookings (booking_id, user_id, match_id, seat_number, payment_status
 (503, 2, 101, 'A-13', 'Confirmed', 150.00),
 (504, 2, 101, NULL, NULL, 150.00),
 (505, 3, 102, 'C-20', 'Pending', 120.00);
+
+
+-- Query 1
+SELECT 
+  match_id, 
+  fixture, 
+  base_ticket_price 
+  FROM matches
+WHERE tournament_category = 'Champions League'
+AND match_status = 'Available';
+
+-- Query 2
+
+SELECT 
+  user_id, 
+  full_name,
+  email
+  FROM users
+  WHERE full_name ILIKE 'Tanvir%'
+  OR full_name ILIKE '%Haque';
+
+-- Query 3
+
+SELECT 
+  booking_id, 
+  user_id, 
+  match_id, 
+  COALESCE(payment_status, 'Action Required') AS "systematic_status" 
+  FROM bookings
+  WHERE payment_status IS NULL;
+
+-- Query 4
+
+
+SELECT 
+  b.booking_id, 
+  u.full_name,
+  m.fixture,
+  b.total_cost
+  FROM bookings AS b 
+  INNER JOIN users AS u  USING(user_id) 
+  INNER JOIN matches AS m USING(match_id);
+
+
+-- Query 5
+SELECT 
+  u.user_id,
+  u.full_name,
+  b.booking_id
+  FROM  users AS u
+  FULL JOIN bookings AS b  USING(user_id);
+
+
+-- Query 6
+
+SELECT
+  booking_id,
+  match_id,
+  total_cost
+  FROM bookings WHERE total_cost >(
+  SELECT 
+  AVG(total_cost) 
+  FROM bookings
+);
+
+-- Query 7
+SELECT 
+  match_id, 
+  fixture, 
+  base_ticket_price 
+  FROM matches
+  ORDER BY base_ticket_price DESC
+  LIMIT 2 offset 1;
+
+
