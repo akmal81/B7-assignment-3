@@ -15,7 +15,7 @@ CREATE TABLE Matches (
     fixture VARCHAR(100) NOT NULL,
     tournament_category VARCHAR(50) NOT NULL,
     base_ticket_price DECIMAL(10, 2) ,
-    match_status VARCHAR(20)
+    match_status VARCHAR(20),
 
     CONSTRAINT CHK_MATCHES_BASE_TICKET_PRICE CHECK(base_ticket_price > 0),
     CONSTRAINT CHK_MATCHES_MATCH_STATUS CHECK(match_status IN ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
@@ -27,7 +27,7 @@ CREATE TABLE Bookings (
     match_id INT REFERENCES matches(match_id),
     seat_number VARCHAR(20),
     payment_status VARCHAR(20),
-    total_cost DECIMAL(10,2) 
+    total_cost DECIMAL(10,2),
 
     CONSTRAINT CHK_BOOKING_PAYMENT_STATUS CHECK(payment_status IN('Pending', 'Confirmed', 'Cancelled', 'Refunded')),
     CONSTRAINT CHK_BOOKINGS_TOTAL_COST CHECK(total_cost > 0)
@@ -56,6 +56,7 @@ INSERT INTO Bookings (booking_id, user_id, match_id, seat_number, payment_status
 (505, 3, 102, 'C-20', 'Pending', 120.00);
 
 
+
 -- Query 1
 SELECT 
   match_id, 
@@ -66,15 +67,17 @@ WHERE tournament_category = 'Champions League'
 AND match_status = 'Available';
 
 -- Query 2
+
 SELECT 
   user_id, 
   full_name,
   email
   FROM users
-  WHERE full_name ILIKE 'Tanvir%'
-  OR full_name ILIKE '%Haque';
+  WHERE full_name LIKE 'Tanvir%'
+  OR full_name ILIKE '%haque%';
 
 -- Query 3
+
 SELECT 
   booking_id, 
   user_id, 
@@ -84,14 +87,17 @@ SELECT
   WHERE payment_status IS NULL;
 
 -- Query 4
+
+
 SELECT 
   b.booking_id, 
   u.full_name,
   m.fixture,
   b.total_cost
   FROM bookings AS b 
-  INNER JOIN users AS u  USING(user_id) 
-  INNER JOIN matches AS m USING(match_id);
+  INNER JOIN users AS u  on b.user_id = u.user_id
+  INNER JOIN matches AS m on b.match_id= m.match_id;
+
 
 -- Query 5
 SELECT 
@@ -99,9 +105,11 @@ SELECT
   u.full_name,
   b.booking_id
   FROM  users AS u
-  FULL JOIN bookings AS b  USING(user_id);
+  LEFT JOIN bookings AS b  USING(user_id);
+
 
 -- Query 6
+
 SELECT
   booking_id,
   match_id,
@@ -120,5 +128,3 @@ SELECT
   FROM matches
   ORDER BY base_ticket_price DESC
   LIMIT 2 offset 1;
-
-
