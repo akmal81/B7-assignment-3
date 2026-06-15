@@ -1,6 +1,7 @@
 # Assignment 3
 ERD diagram Link : https://lucid.app/lucidchart/7354ab36-25b1-419a-8460-6a552f10930c/edit?viewport_loc=79%2C217%2C3667%2C2208%2C0_0&invitationId=inv_99a17b90-4cba-4196-b78c-f98679f86db2
-
+GitHub link : https://github.com/akmal81/B7-assignment-3.git
+Interview Video Link : https://drive.google.com/drive/folders/14AWeaG5eGZEx65X6-8ykdMS-rDzX2u4I?usp=sharing
 
 # ⚽ Football Ticket Booking System
 
@@ -61,7 +62,7 @@ The database script comes pre-configured with **7 tailored analytical queries** 
 | **`Q 1`** | **Conditional Filtering** | Isolates active matches belonging specifically to the **'Champions League'** where the ticket availability is flagged as **'Available'**. |
 | **`Q 2`** | **Pattern Matching** | Uses case-insensitive regex lookups (`ILIKE`) to fetch user accounts whose names either start explicitly with **'Tanvir'** or conclude with **'Haque'**. |
 | **`Q 3`** | **Null Value Handling** | Employs the `COALESCE` function to scan booking logs. If a transaction contains an unassigned payment status (`NULL`), it elegantly outputs a fallback string: `'Action Required'`. |
-| **`Qu4`** | **Inner Join Relational Merge** | Combines rows across `Bookings`, `Users`, and `Matches` using shared key variables (`USING(user_id, match_id)`) to output a unified sales receipt containing booking IDs, fan names, fixtures, and total expenditures. |
+| **`Q 4`** | **Inner Join Relational Merge** | Combines rows across `Bookings`, `Users`, and `Matches` using shared key variables (`USING(user_id, match_id)`) to output a unified sales receipt containing booking IDs, fan names, fixtures, and total expenditures. |
 | **`Q 5`** | **Full Outer Join** | Executes a comprehensive `FULL JOIN` between `Users` and `Bookings`. This maps all existing users alongside booking references, preserving rows for fans who have not placed a booking order yet. |
 | **`Q 6`** | **Sub-query & Aggregation** | Isolates premium transactions by computing a live database-wide average ticket cost (`AVG`) and returning only rows whose individual `total_cost` exceeds that baseline. |
 | **`Q 7`** | **Sorting & Pagination** | Sorts all match events from highest to lowest price using `ORDER BY DESC`. It then combines `LIMIT 2 OFFSET 1` to bypass the top record and isolate the **2nd and 3rd most expensive fixtures** in the ledger. |

@@ -67,7 +67,6 @@ WHERE tournament_category = 'Champions League'
 AND match_status = 'Available';
 
 -- Query 2
-
 SELECT 
   user_id, 
   full_name,
@@ -77,7 +76,6 @@ SELECT
   OR full_name ILIKE '%haque%';
 
 -- Query 3
-
 SELECT 
   booking_id, 
   user_id, 
@@ -87,8 +85,6 @@ SELECT
   WHERE payment_status IS NULL;
 
 -- Query 4
-
-
 SELECT 
   b.booking_id, 
   u.full_name,
@@ -98,7 +94,6 @@ SELECT
   INNER JOIN users AS u  on b.user_id = u.user_id
   INNER JOIN matches AS m on b.match_id= m.match_id;
 
-
 -- Query 5
 SELECT 
   u.user_id,
@@ -107,9 +102,7 @@ SELECT
   FROM  users AS u
   LEFT JOIN bookings AS b  USING(user_id);
 
-
 -- Query 6
-
 SELECT
   booking_id,
   match_id,
