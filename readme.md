@@ -1,7 +1,3 @@
-# Assignment 3
-ERD diagram Link : https://lucid.app/lucidchart/7354ab36-25b1-419a-8460-6a552f10930c/edit?viewport_loc=79%2C217%2C3667%2C2208%2C0_0&invitationId=inv_99a17b90-4cba-4196-b78c-f98679f86db2
-GitHub link : https://github.com/akmal81/B7-assignment-3.git
-Interview Video Link : https://drive.google.com/drive/folders/14AWeaG5eGZEx65X6-8ykdMS-rDzX2u4I?usp=sharing
 
 # ⚽ Football Ticket Booking System
 
@@ -68,3 +64,10 @@ The database script comes pre-configured with **7 tailored analytical queries** 
 | **`Q 7`** | **Sorting & Pagination** | Sorts all match events from highest to lowest price using `ORDER BY DESC`. It then combines `LIMIT 2 OFFSET 1` to bypass the top record and isolate the **2nd and 3rd most expensive fixtures** in the ledger. |
 
 ---
+
+# Links
+```
+ERD diagram Link : https://lucid.app/lucidchart/7354ab36-25b1-419a-8460-6a552f10930c/edit?viewport_loc=79%2C217%2C3667%2C2208%2C0_0&invitationId=inv_99a17b90-4cba-4196-b78c-f98679f86db2
+GitHub link : https://github.com/akmal81/B7-assignment-3.git
+Interview Video Link : https://drive.google.com/drive/folders/14AWeaG5eGZEx65X6-8ykdMS-rDzX2u4I?usp=sharing
+```
